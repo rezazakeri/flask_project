@@ -16,7 +16,7 @@ def get_db_connection():
 
 @app.route('/')
 def home():
-  return 'Hey buddy!! please go to http://localhost/form.html to submit your info.'
+  return 'Welcome! Please go to <a href="/form">/form</a> to submit your info.'
 @app.route('/save', methods=['POST'])
 def save():
   firstname = request.form['firstname']
