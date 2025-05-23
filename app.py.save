@@ -1,0 +1,24 @@
+from flask import Flask, request
+import math
+
+app = Flask(__name__)
+@app.route('/')
+def home():
+  return 'Go to http://localhost/form.html to submit your info.'
+@app.route('/save', methods=['POST'])
+def save():
+  firstname = request.form['firstname']
+  lastname = request.form['lastname']
+  height = float(request.form['height'])
+  # Simple formula for healthy weight range based on height
+  min_weight = math.floor(18.5 * height * height)
+  max_weight = math.ceil(24.9 * height * height)
+  # Show result on the browser for you
+  return f"""
+  Hello {firstname} {lastname}!<br>
+  Phone: {phone} <br>
+  Height: {height} m<br>
+  Suggested Weight Range: {min_weight} kg- {max_weight} kg
+  """
+if __name__=='__main__':
+  app.run()
